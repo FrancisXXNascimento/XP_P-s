@@ -1,0 +1,50 @@
+[ ]
+import math
+def calcular_vf(ci, i, t):
+"""Calcula o Valor Futuro (vf)"""
+return ci * (1 + i) ** t
+def calcular_ci(vf, i, t):
+"""Calcula o Capital Inicial (ci)"""
+return vf / (1 + i) ** t
+def calcular_i(vf, ci, t):
+"""Calcula a Taxa de Juros (i)"""
+return (vf / ci) ** (1 / t) - 1
+def calcular_t(vf, ci, i):
+"""Calcula o Período (t)"""
+return math.log(vf / ci) / math.log(1 + i)
+def main():
+print("Bem-vindo à Calculadora de Juros Compostos!")
+while True:
+opcao = input("O que você gostaria de calcular? (vf, ci, t, i): ").strip().lower()
+if opcao == "vf":
+ci = float(input("Digite o Capital Inicial (ci): "))
+i = float(input("Digite a Taxa de Juros (i) em decimal (ex: 0.05 para 5%): "))
+t = float(input("Digite o Período (t) em meses ou anos: "))
+resultado = calcular_vf(ci, i, t)
+print(f"O Valor Futuro (vf) é: {resultado:.2f}")
+elif opcao == "ci":
+vf = float(input("Digite o Valor Futuro (vf): "))
+i = float(input("Digite a Taxa de Juros (i) em decimal (ex: 0.05 para 5%): "))
+t = float(input("Digite o Período (t) em meses ou anos: "))
+resultado = calcular_ci(vf, i, t)
+print(f"O Capital Inicial (ci) é: {resultado:.2f}")
+elif opcao == "i":
+vf = float(input("Digite o Valor Futuro (vf): "))
+ci = float(input("Digite o Capital Inicial (ci): "))
+t = float(input("Digite o Período (t) em meses ou anos: "))
+resultado = calcular_i(vf, ci, t)
+print(f"A Taxa de Juros (i) é: {resultado:.4f} ou {resultado*100:.2f}% ao período")
+elif opcao == "t":
+vf = float(input("Digite o Valor Futuro (vf): "))
+ci = float(input("Digite o Capital Inicial (ci): "))
+i = float(input("Digite a Taxa de Juros (i) em decimal (ex: 0.05 para 5%): "))
+resultado = calcular_t(vf, ci, i)
+print(f"O Período (t) é: {resultado:.2f} períodos")
+else:
+print("Opção inválida! Tente novamente.")
+continuar = input("Deseja fazer outro cálculo? (S/N): ").strip().lower()
+if continuar != "s":
+print("Se precisar fazer mais cálculos, volte a me executar.")
+break
+if __name__ == "__main__":
+main()
